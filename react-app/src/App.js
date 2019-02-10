@@ -13,11 +13,13 @@ class App extends Component {
     topScore: 0
   };
 
-
   incrementScore = () => {
-    this.setState({ score: this.state.score + 1 });
-    if (this.state.score > this.state.topScore) {
-      this.setState({ topScore: this.state.score })
+  
+    this.setState({ score: this.state.score + 1 })
+
+    if (this.state.score +1> this.state.topScore) {
+      this.setState({topScore: this.state.score + 1})
+      console.log(this.state.score)
     }
   };
 
@@ -69,18 +71,21 @@ class App extends Component {
             <Image url={this.state.images[0].image} name={this.state.images[0].name} imageClick={this.imageClick} id={this.state.images[0].id} />
             <Image url={this.state.images[1].image} name={this.state.images[1].name} imageClick={this.imageClick} id={this.state.images[1].id} />
             <Image url={this.state.images[2].image} name={this.state.images[2].name} imageClick={this.imageClick} id={this.state.images[2].id} />
+            <Image url={this.state.images[3].image} name={this.state.images[3].name} imageClick={this.imageClick} id={this.state.images[3].id} />
           </div>
           <br />
           <div class="row">
-            <Image url={this.state.images[3].image} name={this.state.images[3].name} imageClick={this.imageClick} id={this.state.images[3].id} />
             <Image url={this.state.images[4].image} name={this.state.images[4].name} imageClick={this.imageClick} id={this.state.images[4].id} />
             <Image url={this.state.images[5].image} name={this.state.images[5].name} imageClick={this.imageClick} id={this.state.images[5].id} />
+            <Image url={this.state.images[6].image} name={this.state.images[6].name} imageClick={this.imageClick} id={this.state.images[6].id} />
+            <Image url={this.state.images[7].image} name={this.state.images[7].name} imageClick={this.imageClick} id={this.state.images[7].id} />
           </div>
           <br />
           <div class="row">
-            <Image url={this.state.images[6].image} name={this.state.images[6].name} imageClick={this.imageClick} id={this.state.images[6].id} />
-            <Image url={this.state.images[7].image} name={this.state.images[7].name} imageClick={this.imageClick} id={this.state.images[7].id} />
-            <Image url={this.state.images[8].image} name={this.state.images[8].name} imageClick={this.imageClick} id={this.state.images[8].id} />
+          <Image url={this.state.images[8].image} name={this.state.images[8].name} imageClick={this.imageClick} id={this.state.images[8].id} />
+            <Image url={this.state.images[9].image} name={this.state.images[9].name} imageClick={this.imageClick} id={this.state.images[9].id} />
+            <Image url={this.state.images[10].image} name={this.state.images[10].name} imageClick={this.imageClick} id={this.state.images[10].id} />
+            <Image url={this.state.images[11].image} name={this.state.images[11].name} imageClick={this.imageClick} id={this.state.images[11].id} />
           </div>
           {/* {images.map(image=>(
        <Image url={image.image} name={image.name} />
