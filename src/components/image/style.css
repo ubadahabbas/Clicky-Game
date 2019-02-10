@@ -1,0 +1,12 @@
+img {
+    width: 150px;
+    height: 150px
+}
+
+#image-div {
+    background-color:#8acaaf;
+    box-shadow: 4px 4px rgba(53, 52, 52, 0.514);
+}
+#image-div:hover{
+    background-color: white;
+}
