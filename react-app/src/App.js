@@ -4,6 +4,7 @@ import Header from "./components/header"
 import Jumbotron from "./components/jumbotron"
 import images from "./images.json";
 import Image from "./components/image"
+import Footer from "./components/footer"
 
 class App extends Component {
 
@@ -87,10 +88,8 @@ class App extends Component {
             <Image url={this.state.images[10].image} name={this.state.images[10].name} imageClick={this.imageClick} id={this.state.images[10].id} />
             <Image url={this.state.images[11].image} name={this.state.images[11].name} imageClick={this.imageClick} id={this.state.images[11].id} />
           </div>
-          {/* {images.map(image=>(
-       <Image url={image.image} name={image.name} />
-     ))} */}
         </main>
+<Footer/>
       </div>
     );
   }

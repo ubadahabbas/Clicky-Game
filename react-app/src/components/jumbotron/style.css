@@ -3,3 +3,10 @@ background-image: url("https://images.pexels.com/photos/1509534/pexels-photo-150
 color: white;
 height: 400px;
 }
+.jumbotron h1{
+    font-weight: 600;
+}
+.jumbotron a{
+    background-color: #8acaaf;
+    color: black;
+}
