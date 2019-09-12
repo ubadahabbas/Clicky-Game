@@ -1,12 +1,24 @@
 img {
-    width: 150px;
-    height: 150px
+    width: 9rem;
+    height: 9rem;
 }
 
 #image-div {
     background-color:#8acaaf;
     box-shadow: 4px 4px rgba(53, 52, 52, 0.514);
+    margin: 1rem;
 }
 #image-div:hover{
     background-color: white;
 }
+
+@media only screen and (max-width: 440px) {
+   img {
+    width: 5rem;
+    height: 5rem;
+    }
+    #image-div {
+
+        margin: 0.3rem;
+    }
+  }

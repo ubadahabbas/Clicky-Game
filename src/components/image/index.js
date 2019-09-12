@@ -2,13 +2,16 @@ import React from "react";
 import "./style.css";
 
 function Image(props) {
-    return (
-        <div class="col-md-3">
-            <div class="text-center rounded" id="image-div" onClick={() => props.imageClick(props.id)}>
-                <img src={props.url} class="rounded" alt={props.name} class="click-item" />
-            </div>
-        </div>
-    );
+  return (
+    <div className="text-center rounded" id="image-div">
+      <img
+        src={props.url}
+        className="rounded"
+        alt={props.name}
+        className="click-item"
+      />
+    </div>
+  );
 }
 
 export default Image;

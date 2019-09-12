@@ -1,95 +1,201 @@
-import React, { Component } from 'react';
-import './App.css';
-import Header from "./components/header"
-import Jumbotron from "./components/jumbotron"
+import React, { Component } from "react";
+import "./App.css";
+import Header from "./components/header";
 import images from "./images.json";
-import Image from "./components/image"
-import Footer from "./components/footer"
+import Image from "./components/image";
+import Themes from "./themes.json";
 
 class App extends Component {
-
   state = {
-    images: images,
+    images: [],
+    themes: Themes,
     score: 0,
-    topScore: 0
+    topScore: 0,
+    player: "",
+    page: "theme",
+    theme: "",
+    level: 0,
+    currentlevel: []
   };
 
-  incrementScore = () => {
-  
-    this.setState({ score: this.state.score + 1 })
+  resetGame = ()=>{
+    this.setState({
+      images: [],
+    themes: Themes,
+    score: 0,
+    topScore: 0,
+    player: "",
+    page: "theme",
+    theme: "",
+    level: 0,
+    currentlevel: []
+    })
+  }
+  themeClick(theme) {
+    this.resetState();
+    this.setState({ theme: theme });
+    this.levelCall(theme);
+    this.setState({ page: "game" });
+  }
 
-    if (this.state.score +1> this.state.topScore) {
-      this.setState({topScore: this.state.score + 1})
-      console.log(this.state.score)
+  imageClick = id => {
+  
+    let newArr = this.state.currentlevel;
+    newArr.forEach(element => {
+      if (element.id === id && element.state === 0) {
+        element.state = 1;
+        this.setState({ score: this.state.score + 1 });
+        
+        
+      } else if (element.id === id && element.state == 1) {
+        this.setState({score: 0})
+        if (this.state.level > 1) {
+          this.state.currentlevel.splice(3);
+          this.setState({level: 1})
+          
+        }
+        this.resetState();
+      }
+     
+    });
+    this.shuffle(newArr)
+  };
+
+  levelCall = theme => {
+    if (this.state.level == 0) {
+      images.forEach(element => {
+        if (element.theme == theme) {
+          this.setState({ currentlevel: element.images.slice(0, 3) });
+          this.resetState();
+        }
+      });
+      this.setState({ level: 1 });
+    } else if (this.state.level == 1 ) {
+      images.forEach(element => {
+        if (element.theme == theme) {
+          let array = element.images.slice(0, 6);
+          this.setState({ currentlevel: array });
+          this.resetState();
+         
+          this.setState({ level: 2 });
+        }
+      });
+    } else if (this.state.level == 2) {
+      images.forEach(element => {
+        if (element.theme == theme) {
+          let array = element.images.slice(0, 9);
+          this.setState({ currentlevel: array });
+          this.resetState();
+          this.setState({ level: 3 });
+        }
+      });
+    } else if (this.state.level == 3) {
+      images.forEach(element => {
+        if (element.theme == theme) {
+          let array = element.images.slice(0, 12);
+          this.setState({ currentlevel: array });
+          this.resetState();
+          this.setState({ level: "Game Ended" });
+        }
+      });
     }
   };
+
+ 
 
   resetScore = () => {
-    this.setState({ score: 0 })
+    this.setState({ score: 0 });
   };
 
-  
-  imageClick = id => {
-    console.log(id)
-    console.log(this.state.images)
-    for (var i = 0; i < this.state.images.length; i++) {
-      if (this.state.images[i].id == id) {
-        if (this.state.images[i].state == 0) {
-          this.state.images[i].state = 1;
-          this.incrementScore();
-        }
-        else {
-          this.resetScore();
-           this.resetState();
-        }
-      }
-    }
-    this.shuffle(this.state.images);
-  };
-
-  shuffle = (array) => {
+  shuffle = array => {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
-    this.setState({ images: array })
-    console.log(this.state.images)
-  }
 
-  resetState=()=>{
-    for (var i = 0; i < this.state.images.length; i++){
-      this.state.images[i].state = 0;
+    this.setState({ currentlevel: array });
+  
+    if (this.state.score + 1 == 3 && this.state.level == 1) {
+      this.levelCall(this.state.theme);
+    } else if (this.state.score + 1 == 9 && this.state.level == 2) {
+      this.levelCall(this.state.theme);
+    } else if (this.state.score + 1 == 18 && this.state.level == 3) {
+      this.levelCall(this.state.theme);
     }
-  }
+  };
+
+  resetState = () => {
+    for (var i = 0; i < this.state.currentlevel.length; i++) {
+      this.state.currentlevel[i].state = 0;
+    }
+  };
 
   render() {
+    let count = -1;
+    let key = 0;
     return (
       <div>
-        <Header score={this.state.score} topScore={this.state.topScore} />
-        <Jumbotron />
-        <main class="container">
-          <div class="row">
-            <Image url={this.state.images[0].image} name={this.state.images[0].name} imageClick={this.imageClick} id={this.state.images[0].id} />
-            <Image url={this.state.images[1].image} name={this.state.images[1].name} imageClick={this.imageClick} id={this.state.images[1].id} />
-            <Image url={this.state.images[2].image} name={this.state.images[2].name} imageClick={this.imageClick} id={this.state.images[2].id} />
-            <Image url={this.state.images[3].image} name={this.state.images[3].name} imageClick={this.imageClick} id={this.state.images[3].id} />
+        {this.state.page == "game" ? (
+          <div className="game-outerdiv">
+            <div className="score-div text-center"> {this.state.score}</div>
+            <div className="game-div">
+              <div className="container">
+                {this.state.level > 0 ? (
+                  <div className="row">
+                    {this.state.currentlevel.map(element => {
+                      count++;
+                      return (
+                        <div className="col" key={count}>
+                          <div onClick={() => this.imageClick(element.id)}>
+                            <Image
+                              url={element.image}
+                              name={element.name}
+                              imageClick={this.imageClick}
+                              id={element.id}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            <div className="bottom-div row">
+              <div className="col level">Level: {this.state.level}</div>
+              <div className="col button">
+                <button onClick={() => this.resetGame()}>Reset</button>
+              </div>
+            </div>
           </div>
-          <br />
-          <div class="row">
-            <Image url={this.state.images[4].image} name={this.state.images[4].name} imageClick={this.imageClick} id={this.state.images[4].id} />
-            <Image url={this.state.images[5].image} name={this.state.images[5].name} imageClick={this.imageClick} id={this.state.images[5].id} />
-            <Image url={this.state.images[6].image} name={this.state.images[6].name} imageClick={this.imageClick} id={this.state.images[6].id} />
-            <Image url={this.state.images[7].image} name={this.state.images[7].name} imageClick={this.imageClick} id={this.state.images[7].id} />
+        ) : this.state.page == "theme" ? (
+          <div className="launch-div">
+            <div className="container">
+              <div>
+                <div className="text-center">Select Theme</div>
+                <div className="container">
+                  <div className="row">
+                    {this.state.themes.map(theme => {
+                      key++;
+                      return (
+                        <div className="col" key={key}>
+                          <div onClick={() => this.themeClick(theme.name)}>
+                            <Image
+                              className="theme-div"
+                              theme="Harry-Potter"
+                              url={theme.image}
+                              name={theme.name}
+                            />
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <br />
-          <div class="row">
-          <Image url={this.state.images[8].image} name={this.state.images[8].name} imageClick={this.imageClick} id={this.state.images[8].id} />
-            <Image url={this.state.images[9].image} name={this.state.images[9].name} imageClick={this.imageClick} id={this.state.images[9].id} />
-            <Image url={this.state.images[10].image} name={this.state.images[10].name} imageClick={this.imageClick} id={this.state.images[10].id} />
-            <Image url={this.state.images[11].image} name={this.state.images[11].name} imageClick={this.imageClick} id={this.state.images[11].id} />
-          </div>
-        </main>
-<Footer/>
+        ) : null}
       </div>
     );
   }
