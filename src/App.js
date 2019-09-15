@@ -41,25 +41,44 @@ class App extends Component {
   imageClick = id => {
   
     let newArr = this.state.currentlevel;
+    let score = this.state.score;
     newArr.forEach(element => {
       if (element.id === id && element.state === 0) {
         element.state = 1;
         this.setState({ score: this.state.score + 1 });
-        
+        score ++;
         
       } else if (element.id === id && element.state == 1) {
-        this.setState({score: 0})
-        if (this.state.level > 1) {
-          this.state.currentlevel.splice(3);
+       this.state.currentlevel.splice(3)
           this.setState({level: 1})
-          
-        }
+        this.setState({score: 0})
         this.resetState();
       }
-     
-    });
-    this.shuffle(newArr)
+    })
+    this.shuffle(newArr,score);   
   };
+
+  shuffle = (array,score) => {
+ 
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    this.setState({ currentlevel: array });
+console.log(score)
+    if (score === 3 && this.state.level === 1) {
+      this.levelCall(this.state.theme);
+    } else if (score == 9 && this.state.level == 2) {
+      this.levelCall(this.state.theme);
+    } else if (score == 18 && this.state.level == 3) {
+      this.levelCall(this.state.theme);
+    } else if (score == 30 && this.state.level == 4) {
+      this.levelCall(this.state.theme);
+    } 
+  
+  };
+ 
 
   levelCall = theme => {
     if (this.state.level == 0) {
@@ -95,10 +114,19 @@ class App extends Component {
           let array = element.images.slice(0, 12);
           this.setState({ currentlevel: array });
           this.resetState();
-          this.setState({ level: "Game Ended" });
-        }
+          this.setState({ level: 4 });
+        } 
       });
-    }
+    } else if (this.state.level == 4) {
+      images.forEach(element => {
+        if (element.theme == theme) {
+          let array = element.images.slice(0, 12);
+          this.setState({ currentlevel: array });
+          this.resetState();
+          this.setState({ level: "Game Ended" });
+        } 
+      });
+    } 
   };
 
  
@@ -107,27 +135,17 @@ class App extends Component {
     this.setState({ score: 0 });
   };
 
-  shuffle = array => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
 
-    this.setState({ currentlevel: array });
-  
-    if (this.state.score + 1 == 3 && this.state.level == 1) {
-      this.levelCall(this.state.theme);
-    } else if (this.state.score + 1 == 9 && this.state.level == 2) {
-      this.levelCall(this.state.theme);
-    } else if (this.state.score + 1 == 18 && this.state.level == 3) {
-      this.levelCall(this.state.theme);
-    }
-  };
 
-  resetState = () => {
+  resetState = (back) => {
     for (var i = 0; i < this.state.currentlevel.length; i++) {
       this.state.currentlevel[i].state = 0;
     }
+    if (back){
+      let array = this.state.currentlevel.slice(0,3)
+      this.setState({currentlevel: array})
+    }
+   
   };
 
   render() {
@@ -137,7 +155,7 @@ class App extends Component {
       <div>
         {this.state.page == "game" ? (
           <div className="game-outerdiv">
-            <div className="score-div text-center"> {this.state.score}</div>
+            <div className="score-div text-center">{this.state.score}</div>
             <div className="game-div">
               <div className="container">
                 {this.state.level > 0 ? (
@@ -164,7 +182,8 @@ class App extends Component {
             <div className="bottom-div row">
               <div className="col level">Level: {this.state.level}</div>
               <div className="col button">
-                <button onClick={() => this.resetGame()}>Reset</button>
+              <div  onClick={() => this.resetGame()}>Reset</div>
+              
               </div>
             </div>
           </div>
@@ -172,7 +191,7 @@ class App extends Component {
           <div className="launch-div">
             <div className="container">
               <div>
-                <div className="text-center">Select Theme</div>
+                <div className="text-center theme" >Theme</div>
                 <div className="container">
                   <div className="row">
                     {this.state.themes.map(theme => {

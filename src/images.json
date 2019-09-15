@@ -104,26 +104,26 @@
     },
     {
       "id": 5,
-      "name": "Courage",
-      "image": "https://vignette4.wikia.nocookie.net/vsbattles/images/3/39/Courage-0.png/revision/latest?cb=20160719055423",
+      "name": "harry3",
+      "image": "https://i.dlpng.com/static/png/152108_preview.png",
       "state": 0
     },
     {
       "id": 6,
-      "name": "Doug Funnie",
-      "image": "https://vignette1.wikia.nocookie.net/doug/images/3/3b/Doug001.gif/revision/latest?cb=20110807170511",
+      "name": "Hermione2",
+      "image": "https://66.media.tumblr.com/37f92082468bbc0a51dfeddedf11bce4/tumblr_owfthfKu4g1rxkqbso1_1280.png",
       "state": 0
     },
     {
       "id": 7,
-      "name": "Bugs Bunny",
-      "image": "https://vignette2.wikia.nocookie.net/deathbattlefanon/images/2/2b/Bugs_Bunny.png/revision/latest?cb=20151206010607",
+      "name": "Voldemort",
+      "image": "https://4.bp.blogspot.com/-dNUu8zj2fXQ/V1a3TjzoXjI/AAAAAAAAGeo/x6uIjmSlp60UK2nTbxmSO1sZLuGLTuPVACLcB/s1600/l_vold01_hr_ca_hpe7a.png",
       "state": 0
     },
     {
       "id": 8,
-      "name": "Johnny Bravo",
-      "image": "http://vignette3.wikia.nocookie.net/p__/images/9/9a/Johnny_Bravo.png/revision/latest?cb=20131031233339&path-prefix=protagonist",
+      "name": "Hogwarts",
+      "image": "https://www.nplib.com/wp-content/uploads/2019/01/Hogwarts.png",
       "state": 0
     },
     {
@@ -148,6 +148,83 @@
       "id": 12,
       "name": "Ickis",
       "image": "http://static.tvtropes.org/pmwiki/pub/images/ickis.png",
+      "state": 0
+    }
+  ]
+},
+{
+  "theme": "Celebraties",
+  "images":[
+     {
+      "id": 1,
+      "name": "mj",
+      "image": "https://stickeroid.com/uploads/pic/full-pngimg/thumb/stickeroid_5bf56ae8721aa.png",
+      "state": 0
+    },
+    {
+      "id": 2,
+      "name": "riri",
+      "image": "http://mithub.net/download/riri-art_4.png",
+      "state": 0
+    },
+    {
+      "id": 3,
+      "name": "bey",
+      "image": "https://i.pinimg.com/originals/61/8c/a2/618ca21e32efeedf0225e1607ec400c2.png",
+      "state": 0
+    },
+    {
+      "id": 4,
+      "name": "miley",
+      "image": "https://i.pinimg.com/originals/6c/95/27/6c95273b892ffcfc73fbf5f9667ac271.png",
+      "state": 0
+    },
+    {
+      "id": 5,
+      "name": "mdna",
+      "image": "https://cdn131.picsart.com/289542686042211.png?r1024x1024",
+      "state": 0
+    },
+    {
+      "id": 6,
+      "name": "cardi",
+      "image": "https://cdn130.picsart.com/292035962053211.png?r1024x1024",
+      "state": 0
+    },
+    {
+      "id": 7,
+      "name": "nicki",
+      "image": "https://i2.wp.com/insidejamarifox.com/wp-content/uploads/2018/04/nicki-minaj_221453.png?fit=332%2C400&ssl=1",
+      "state": 0
+    },
+    {
+      "id": 8,
+      "name": "kw",
+      "image": "http://bottomless-mimosas.com/kanye_1.png",
+      "state": 0
+    },
+    {
+      "id": 9,
+      "name": "Thewknd",
+      "image": "https://meinmediendesigner.de/wp-content/uploads/revslider/TheWeeknd-Illustration.png",
+      "state": 0
+    },
+    {
+      "id": 10,
+      "name": "ts",
+      "image": "https://www.trzcacak.rs/myfile/full/287-2877013_taylor-illustration.png",
+      "state": 0
+    },
+    {
+      "id": 11,
+      "name": "ed",
+      "image": "https://s.tcdn.co/78b/0ec/78b0ec63-e276-3e68-a391-d7aca56b3e5e/1.png",
+      "state": 0
+    },
+    {
+      "id": 12,
+      "name": "drake",
+      "image": "http://allicunanan.com/portfolio/wp-content/uploads/2019/02/d.png",
       "state": 0
     }
   ]

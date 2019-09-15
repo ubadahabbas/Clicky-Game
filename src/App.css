@@ -3,14 +3,14 @@
 .launch-div{
   margin: 5rem auto;
   width: 70%;
-  background-color: #4098b1;
+  background-color: #4099b100;
   border-radius: 15px;
 }
 
 .game-div{
   margin: auto;
   width: 60%;
-  background-color: #4098b1;
+  background-color: #4099b100;
   border-radius: 15px;
 }
 .bottom-div {
@@ -20,13 +20,30 @@
 
 .score-div{
   margin: 5rem auto 1rem;
+  font-family: 'Righteous', cursive;
+  font-size: 2rem;
+  color: white;
 }
 
 .level{
   text-align: left;
+  font-family: 'Righteous', cursive;
+  font-size: 1rem;
+  color: white;
+}
+.theme{
+  font-family: 'Righteous', cursive;
+  font-size: 2rem;
+  color: white;
 }
 .button{
   text-align: right;
+  font-family: 'Righteous', cursive;
+  font-size: 1rem;
+  color: white;
+}
+.button:hover{
+cursor: pointer;
 }
 @media only screen and (max-width: 800px) {
   .game-div{
